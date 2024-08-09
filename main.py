@@ -10,9 +10,10 @@ screen.bgcolor("black")
 screen.title("Snake Game")
 screen.tracer(0)
 
+scoreboard = Scoreboard()
+scoreboard.update_scoreboard()
 g_snake = Snake()
 g_food = Food()
-scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(g_snake.up, "Up")
@@ -34,14 +35,14 @@ while game_is_on:
         g_snake.extend()  
 
     if abs(g_snake.head.xcor()) > 290 or abs(g_snake.head.ycor()) > 290:
-        game_is_on = False
-        print("Game Over")
+        scoreboard.reset()
+        g_snake.reset()
 
     for segment in g_snake.segments[1:]:
         if g_snake.head.distance(segment) < 5:
-            game_is_on = False
-            print("Game Over")
-            break
+            scoreboard.reset()
+            g_snake.reset()
+
 
 
 screen.exitonclick()

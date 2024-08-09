@@ -45,13 +45,18 @@ class Snake:
         if self.head.heading() != 180:
             self.head.setheading(0)   
 
-
     def extend(self):
         new_position = self.segments[-1].position()
         snake_piece = self.create_piece(new_position)
         self.segments.append(snake_piece)
 
-    
+    def reset(self):
+        for segment in self.segments:
+            segment.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
 
     
 
