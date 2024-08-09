@@ -14,9 +14,9 @@ class Scoreboard(Turtle):
 
         with open("high_score.txt") as h_score:
             high_score = h_score.read()
-            if high_score:
+            try:
                 self.high_score = int(high_score)
-            else:
+            except:
                 with open("high_score.txt", "w") as h_score:
                     h_score.write("0")
             h_score.close()
